@@ -13,20 +13,20 @@ The application uses Entity Framework Core for database persistence and follows 
 
 ## Features
 
-1. **Account Management**
+1. [Account Management]
    - Supports two account types:
      - CheckingAccount (allows overdraft up to a limit).
      - SavingsAccount (no overdraft, balance must stay positive).
    - CRUD operations for accounts.
 
-2. **Transactions**
+2. [Transactions]
    - Records deposits, withdrawals, and transfers in a transaction log.
    - Includes transaction details such as type, amount, and timestamp.
 
-3. **Endpoints**
+3. [Endpoints]
    - Create, deposit, withdraw, transfer, and retrieve balance.
 
-4. **Database**
+4. [Database]
    - Tables for Accounts, AccountTypes, Transactions, and TransactionTypes.
 
 ---
