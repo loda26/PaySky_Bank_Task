@@ -13,84 +13,29 @@ The application uses Entity Framework Core for database persistence and follows 
 
 ## Features
 
-1. [Account Management]
+1. **Account Management**
    - Supports two account types:
      - CheckingAccount (allows overdraft up to a limit).
      - SavingsAccount (no overdraft, balance must stay positive).
    - CRUD operations for accounts.
 
-2. [Transactions]
+2. **Transactions**
    - Records deposits, withdrawals, and transfers in a transaction log.
    - Includes transaction details such as type, amount, and timestamp.
 
-3. [Endpoints]
+3. **Endpoints**
    - Create, deposit, withdraw, transfer, and retrieve balance.
 
-4. [Database]
+4. **Database**
    - Tables for Accounts, AccountTypes, Transactions, and TransactionTypes.
 
 ---
 
-## Endpoints
-
-### Account Endpoints
-- **POST** `/api/accounts/create`
-  - Create a new account.
-  - **Request Body**:
-    ```json
-    {
-        "accountNumber": "123",
-        "initialBalance": 500,
-        "accountTypeId": 1
-    }
-    ```
-
-- **GET** `/api/accounts`
-  - Retrieve all accounts.
-
-- **GET** `/api/accounts/{accountNumber}/balance`
-  - Get the balance of a specific account.
-
-### Transaction Endpoints
-- **POST** `/api/accounts/deposit`
-  - Deposit funds into an account.
-  - **Request Body**:
-    ```json
-    {
-        "accountNumber": "123456789",
-        "amount": 200.0
-    }
-    ```
-
-- **POST** `/api/accounts/withdraw`
-  - Withdraw funds from an account.
-  - **Request Body**:
-    ```json
-    {
-        "accountNumber": "123456789",
-        "amount": 150.0
-    }
-    ```
-
-- **POST** `/api/accounts/transfer`
-  - Transfer funds between accounts.
-  - **Request Body**:
-    ```json
-    {
-        "sourceAccountNumber": "123456789",
-        "targetAccountNumber": "987654321",
-        "amount": 100.0
-    }
-    ```
-
----
-
-## Database Schema
-
-- **Accounts**: Stores account details such as account number, balance, and account type.
-- **AccountTypes**: Lookup table for account types (e.g., Checking, Savings).
-- **Transactions**: Logs all transactions (deposit, withdraw, transfer).
-- **TransactionTypes**: Lookup table for transaction types (e.g., Deposit, Withdraw, Transfer).
+## Technologies Used
+- ASP.NET Core
+- Entity Framework Core
+- SQL Server
+- Swagger for API documentation
 
 ---
 
@@ -105,7 +50,6 @@ BankingSystemAPI
 │   └── AccountService.cs
 ├── Data
 │   ├── BankingDbContext.cs
-│   └── Migrations
 ├── Models
 │   ├── Account.cs
 │   ├── AccountType.cs
@@ -122,56 +66,92 @@ BankingSystemAPI
 
 ---
 
+## Database Schema
+
+- **Accounts**: Stores account details such as account number, balance, and account type.
+- **AccountTypes**: Lookup table for account types (e.g., Checking, Savings).
+- **Transactions**: Logs all transactions (deposit, withdraw, transfer).
+- **TransactionTypes**: Lookup table for transaction types (e.g., Deposit, Withdraw, Transfer).
+
+---
+
 ## How to Run
 
-1. Clone the repository:
-   ```bash
-   git clone https://github.com/yourusername/BankingSystemAPI.git
-   ```
-
-2. Navigate to the project directory:
-   ```bash
-   cd BankingSystemAPI
-   ```
-
-3. Set up the database:
+- Set up the database:
    - Update the connection string in `appsettings.json`.
+   - Open Tools -> NuGetPackageManager -> Package Manager Console.
    - Apply migrations:
      ```bash
-     dotnet ef database update
+     add-migration bank
      ```
-
-4. Run the application:
-   ```bash
-   dotnet run
-   ```
-
-5. Access the Swagger UI for API testing:
-   - Navigate to `http://localhost:<port>/swagger`.
-
+  - Update Database:
+     ```bash
+     update-database
+     ```
 ---
 
-## Technologies Used
-- ASP.NET Core
-- Entity Framework Core
-- SQL Server
-- Swagger for API documentation
+## Endpoints
 
----
+### Account Endpoints
+- **POST** `/api/accounts/create`
+  - Create a new account.
+  - **Request Body**:
+    ```json
+    {
+        "accountNumber": "123",
+        "initialBalance": 500,
+        "accountTypeId": 1
+    }
+    ```
+    - **Request Body**:
+    ```json
+    {
+        "accountNumber": "321",
+        "initialBalance": 1000,
+        "accountTypeId": 2
+    }
+    ```
 
-## Future Enhancements
-- Add support for recurring transactions.
-- Include account holder details and authentication.
-- Implement unit tests for business logic.
+- **GET** `/api/accounts`
+  - Retrieve all accounts.
 
----
+- **GET** `/api/accounts/{accountNumber}/balance`
+  - Get the balance of a specific account.
 
-## License
+### Transaction Endpoints
+- **POST** `/api/accounts/deposit`
+  - Deposit funds into an account.
+  - **Request Body**:
+    ```json
+    {
+        "accountNumber": "123",
+        "amount": 200.0
+    }
+    ```
 
-This project is licensed under the [MIT License](LICENSE).
+- **POST** `/api/accounts/withdraw`
+  - Withdraw funds from an account.
+  - **Request Body**:
+    ```json
+    {
+        "accountNumber": "123",
+        "amount": 150.0
+    }
+    ```
+
+- **POST** `/api/accounts/transfer`
+  - Transfer funds between accounts.
+  - **Request Body**:
+    ```json
+    {
+        "sourceAccountNumber": "123",
+        "targetAccountNumber": "321",
+        "amount": 100.0
+    }
+    ```
 
 ---
 
 ## Contact
 
-For questions or suggestions, feel free to contact me at [your.email@example.com].
+For questions or suggestions, feel free to contact me at [mokhaled26498@gmail.com].
