@@ -39,8 +39,8 @@ The application uses Entity Framework Core for database persistence and follows 
   - **Request Body**:
     ```json
     {
-        "accountNumber": "123456789",
-        "initialBalance": 500.0,
+        "accountNumber": "123",
+        "initialBalance": 500,
         "accountTypeId": 1
     }
     ```
